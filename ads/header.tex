@@ -19,6 +19,9 @@
 \usepackage{multirow}
 \usepackage[ngerman]{babel}
 \usepackage{xstring}
+\usepackage{xcolor}
+\usepackage{calc}
+\usepackage{nameref}
 
 %%%%%%% Commands %%%%%%%
 \newcommand{\einstellung}[1]{%
@@ -90,6 +93,10 @@
 % Flag für Literaturverzeichnis
 \newif\ifliteratur
 \literaturfalse
+
+%Flag für eigenes Unternehmen
+\newif\iffirma
+\firmafalse
 
 \input{ads/settings_list.tex} % verfügbare Einstellungen
 \input{settings.tex} % lese Einstellungen
@@ -188,12 +195,72 @@
 \newrobustcmd*{\citecompleteauthor}{\AtNextCite{\DeclareNameAlias{labelname}{given-family}}\citeauthor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kopf-/Fußzeilenwechsel %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setbeamertemplate{footline}
+\definecolor{dhbw-gray}{RGB}{90, 108, 118}
+\setbeamertemplate{headline}
 {%
+    \iffirma
+        \begin{minipage}[c]{0.5\textwidth}
+            \hspace{10px}\includegraphics[height=7.5mm]{images/dhbw.png}\hfill
+        \end{minipage}
+        \begin{minipage}[c]{0.5\textwidth}
+            \hfill\includegraphics[height=7.5mm]{images/companylogo.png}\hspace{10px}
+        \end{minipage}
+        \vspace{2pt}
+        \hspace{10px}
+        \setlength{\textwidth}{\dimexpr\textwidth-20px}
+        \begin{minipage}[c]{\textwidth}
+            \color{dhbw-gray}
+             \hrule
+             \vspace{2pt}
+             \hfill\insertsectionhead
+        \end{minipage}
+        \hspace{10px}
+    \else
+        \vspace{10px}
+        \begin{minipage}[c]{0.3\textwidth}
+            \hspace{10px}\includegraphics[height=10mm]{images/dhbw.png}
+        \end{minipage}
+        \begin{minipage}[c]{0.65\textwidth}
+            \color{dhbw-gray}
+            \hfill \datumAbgabe
+            \vspace{1pt}
+            \hrule
+            \vspace{2pt}
+            \hfill\insertsectionhead
+        \end{minipage}
+        \hspace{10px}
+    \fi
+    \break
+}
+
+\setbeamertemplate{frametitle}
+{
+    \begin{beamercolorbox}[wd=\paperwidth,left]{frametitle}
+        \hspace{3pt}
+        \usebeamerfont{frametitle}
+        \insertframetitle
+        \vskip2pt
+    \end{beamercolorbox}%
+}
+
+
+\setbeamertemplate{footline}
+{%        
     \hbox{
         \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+            \color{dhbw-gray}
             \titel\hfill\autor\hfill\insertpagenumber
         \end{beamercolorbox}
     }%
 }
 
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}

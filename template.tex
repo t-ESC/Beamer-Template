@@ -3,23 +3,27 @@
 \begin{document}
 
     % Deckblatt
-    \input{ads/titlepage.tex}
-
-    \pagenumbering{Roman}
-
     {
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kopf-/Fußzeilenwechsel %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
         \setbeamertemplate{footline}{}
-            
+        \setbeamertemplate{headline}{}
+        \input{ads/titlepage.tex}
+    }
+
+    \pagenumbering{Roman}
+    % Selbstständigkeitserklärung
+    {
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kopf-/Fußzeilenwechsel %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \setbeamertemplate{footline}{}
         \ifselbsterkl
             \begin{frame}
-                
                 \input{ads/selbststaendigkeitserkl}
             \end{frame}
         \fi
-
-
+    }
+    {
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kopf-/Fußzeilenwechsel %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \setbeamertemplate{footline}{}
         % Inhaltsverzeichnis
         \ifinhalt
             \begin{frame}
@@ -32,16 +36,18 @@
         \pagenumbering{arabic}
     }
 
-    \foreach \i in {01,02,03,04,05,06,07,08,09,...,99} {%
-            \edef\FileName{content/\i kapitel}%
-                \IfFileExists{\FileName}{%
-                    \input{\FileName}
-                }
-                {%
-                    %file does not exist
-                }
-        }
 
-    \input{ads/appendix.tex}
+    {
+        \foreach \i in {01,02,03,04,05,06,07,08,09,...,99} {%
+                \edef\FileName{content/\i kapitel}%
+                    \IfFileExists{\FileName}{%
+                        \input{\FileName}
+                    }
+                    {%
+                        %file does not exist
+                    }
+            }
 
+        \input{ads/appendix.tex}
+    }
 \end{document}
