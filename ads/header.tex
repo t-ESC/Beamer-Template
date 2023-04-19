@@ -22,6 +22,7 @@
 \usepackage{xcolor}
 \usepackage{calc}
 \usepackage{nameref}
+\usepackage{acronym}
 
 %%%%%%% Commands %%%%%%%
 \newcommand{\einstellung}[1]{%
@@ -97,6 +98,10 @@
 %Flag für eigenes Unternehmen
 \newif\iffirma
 \firmafalse
+
+% Flag für Einfügen des Abkürzungsverzeichnis
+\newif\ifabkverz
+\abkverzfalse
 
 \input{ads/settings_list.tex} % verfügbare Einstellungen
 \input{settings.tex} % lese Einstellungen
