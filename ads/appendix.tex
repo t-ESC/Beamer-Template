@@ -1,17 +1,17 @@
 % !TeX root = ../template.tex
 
-\ifliteratur
-    \begin{frame}[allowframebreaks]
-        \frametitle{\langanhang}
-        \printbibliography[heading=bibnumbered]
-    \end{frame}
-\fi
-
 \ifabkverz
     \begin{frame}[allowframebreaks]
         \frametitle{\langabkverz}
         \begin{acronym}[LOREMIPSUM] % Die Angabe in eckigen Klammern legt die Breite der linken Spalte fest! => ggf. anpassen
             \IfFileExists{{ads/sortedAcronyms}}{\input{ads/sortedAcronyms}}{\input{ads/acronyms}}
         \end{acronym}
+    \end{frame}
+\fi
+
+\ifliteratur
+    \begin{frame}[allowframebreaks]
+        \frametitle{\langbib}
+        \printbibliography
     \end{frame}
 \fi

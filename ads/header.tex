@@ -106,6 +106,13 @@
 \input{ads/settings_list.tex} % verfügbare Einstellungen
 \input{settings.tex} % lese Einstellungen
 
+\usepackage[
+    backend=bibtex,		% empfohlen. Falls biber Probleme macht: bibtex
+    bibwarn=true,
+    bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
+    sortlocale=de_DE,
+    style=\zitierstil,
+]{biblatex}
 
 \input{lang/strings} % verfügbare Strings
 \input{lang/\sprache} % Übersetzung einlesen
@@ -269,3 +276,5 @@
   \vfill
   \end{frame}
 }
+
+\setbeamerfont{caption}{size=\tiny}
